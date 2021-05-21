@@ -83,6 +83,16 @@
                     </div>
                 </div>
             </li>
+
+            <!-- Nav Item - product settings -->
+            <li class="nav-item">
+                <a href="{{route('productSettings')}}" class="nav-link text-capitalize">
+                    <i class="nav-icon fas fa-tasks"></i>
+                    <span>
+                        product settings
+                    </span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
