@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+//        $user = Auth::user();
+//        if ($user->hasRole('patient')) {
+//            return view('frontend.my-account');
+//            //return view('layouts.app');
+//        } else {
+//            return view('admin.index');
+//        }
+        return view('admin.index');
     }
 }
