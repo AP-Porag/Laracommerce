@@ -107,7 +107,7 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = SubCategory::findOrFail($id)->forceDelete();
+        $subcategory = SubCategory::findOrFail($id)->forceDelete();
         return back();
     }
 }

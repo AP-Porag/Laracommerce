@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\ProductSettings;
 
 use App\Http\Controllers\Controller;
+use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UnitController extends Controller
 {
@@ -35,7 +37,21 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation request
+
+        $this->validate($request,[
+
+            'unit'=>'required|unique:units,name|min:3',
+            'short_form'=>'required'
+        ]);
+
+        //saving to database
+        $unit = Unit::create([
+            'name'=>$request->unit,
+            'slug'=>Str::slug($request->unit),
+            'short_form'=>$request->short_form,
+        ]);
+        return back();
     }
 
     /**
@@ -80,6 +96,7 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $unit = Unit::findOrFail($id)->forceDelete();
+        return back();
     }
 }

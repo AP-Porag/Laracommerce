@@ -30,4 +30,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/color','ProductSettings\ColorController');
     Route::resource('/size','ProductSettings\SizeController');
     Route::resource('/unit','ProductSettings\UnitController');
+    Route::resource('/status','ProductSettings\StatusController');
+    Route::resource('/product','Product\ProductController');
 });

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\ProductSettings;
 
 use App\Http\Controllers\Controller;
-use App\Models\Color;
+use App\Models\status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ColorController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,20 +37,17 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-
         //validation request
 
         $this->validate($request,[
 
-            'color'=>'required|unique:colors,name|min:3',
-            'color_code'=>'required|min:3'
+            'status'=>'required|unique:statuses,name|min:3',
         ]);
 
         //saving to database
-        $color = Color::create([
-            'name'=>$request->color,
-            'slug'=>Str::slug($request->color),
-            'color_code'=>'#'.$request->color_code,
+        $status = status::create([
+            'name'=>$request->status,
+            'slug'=>Str::slug($request->status),
         ]);
         return back();
     }
@@ -97,7 +94,7 @@ class ColorController extends Controller
      */
     public function destroy($id)
     {
-        $color = Color::findOrFail($id)->forceDelete();
+        $size = status::findOrFail($id)->forceDelete();
         return back();
     }
 }
