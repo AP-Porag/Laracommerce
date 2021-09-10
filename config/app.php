@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laracommerce'),
+    'name' => env('APP_NAME', 'Dealing-BD'),
 
     /*
     |--------------------------------------------------------------------------
