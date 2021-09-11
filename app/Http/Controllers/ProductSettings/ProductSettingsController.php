@@ -22,7 +22,7 @@ class ProductSettingsController extends Controller
         $sizes = Size::orderBy('created_at','DESC')->paginate(2);
         $units = Unit::orderBy('created_at','DESC')->paginate(2);
         $statuses = status::orderBy('created_at','DESC')->paginate(2);
-        $products = Product::orderBy('created_at','DESC')->paginate(2);
+        $products = Product::orderBy('created_at','DESC')->paginate(5);
         return view('admin.productSettings.index',compact('categories','subCategories','colors','sizes','units','statuses','products'));
     }
 }

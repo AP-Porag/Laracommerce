@@ -18,7 +18,7 @@ class CreateSubCategoriesTable extends Migration
             $table->foreignId('category_id');
             $table->string('name');
             $table->string('slug');
-            $table->string('thumbnail')->default('/storage/categories/no-image-available.webp');
+            $table->string('thumbnail')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

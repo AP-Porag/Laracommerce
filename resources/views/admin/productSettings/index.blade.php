@@ -214,7 +214,7 @@
                                             name
                                         </th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                            aria-label="Age: activate to sort column ascending">P. Count
+                                            aria-label="Age: activate to sort column ascending">P. Stock
                                         </th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                             aria-label="Age: activate to sort column ascending">Category Name
@@ -224,25 +224,32 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($subCategories as $subCategory)
+                                    @foreach($products as $product)
                                         <tr role="row" class="odd">
                                             <td class="sorting_1 text-center">{{$loop->iteration}}</td>
                                             <td class="sorting_1 text-center">
                                                 <div class="img-thumbnail" style="width: 110px;">
-                                                    <img src="{{$subCategory->thumbnail}}" alt="thumbnail" class="img-fluid" id="preview">
+                                                    <img src="{{$product->thumbnail}}" alt="thumbnail" class="img-fluid" id="preview">
                                                 </div>
                                             </td>
-                                            <td class="sorting_1 text-center">{{$subCategory->name}}</td>
+                                            <td class="sorting_1 text-center">{{$product->name}}</td>
                                             <td class="sorting_1 text-center">
-                                                20
+                                                @php
+                                                $totalStock = 0;
+
+                                                foreach ($product->stocks as $stock){
+                                                    $totalStock += $stock->quantity;
+                                                }
+                                                @endphp
+                                                <span>{{$totalStock}}</span><span>{{$product->unit->short_form}}</span>
                                             </td>
                                             <td class="sorting_1 text-center">
-                                                {{$subCategory->category->name}}
+                                                {{$product->category->name}}
                                             </td>
                                             <td>
                                                 <div class="btn-group d-flex justify-content-center">
                                                     <a href="#" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
-                                                    <form action="{{route('subCategory.destroy',[$subCategory->id])}}" method="post">
+                                                    <form action="{{route('subCategory.destroy',[$product->id])}}" method="post">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -397,7 +404,7 @@
                                                {{$category->subcategories->count()}}
                                             </td>
                                             <td class="sorting_1 text-center">
-                                               3
+                                                {{$category->products->count()}}
                                             </td>
                                             <td>
                                                 <div class="btn-group d-flex justify-content-center">
@@ -571,7 +578,7 @@
                                             </td>
                                             <td class="sorting_1 text-center">{{$subCategory->name}}</td>
                                             <td class="sorting_1 text-center">
-                                                20
+                                                {{$subCategory->products->count()}}
                                             </td>
                                             <td class="sorting_1 text-center">
                                                 {{$subCategory->category->name}}

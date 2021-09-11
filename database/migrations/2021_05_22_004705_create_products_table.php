@@ -21,10 +21,9 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->string('summary')->nullable();
             $table->string('description')->nullable();
-            $table->string('thumbnail')->default('/storage/categories/no-image-available.webp');
+            $table->string('thumbnail')->nullable();
             $table->string('unit_id')->nullable();
             $table->string('price')->nullable();
-            $table->string('reviews')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

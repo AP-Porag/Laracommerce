@@ -18,4 +18,12 @@ class Product extends Model
     {
         return $this->belongsTo(SubCategory::class);
     }
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
+    }
 }
